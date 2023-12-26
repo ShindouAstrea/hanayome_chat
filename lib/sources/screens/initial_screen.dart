@@ -14,34 +14,32 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   bool _hasData = false;
 
-
   @override
- void initState() {
+  void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkMemory();
     });
- }
+  }
 
- @override
- void dispose() {
+  @override
+  void dispose() {
     super.dispose();
- }
+  }
 
- void _checkMemory()async {
-  final provider = Provider.of<QuintillizaProvider>(context);
+  void _checkMemory() async {
+    final provider = Provider.of<QuintillizaProvider>(context, listen: false);
 
     final inicioSesion = await provider.hayDatos();
 
     setState(() {
-      
       _hasData = inicioSesion;
     });
- }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (_hasData) {
+    if (_hasData == true) {
       return const ChatScreen();
     } else {
       return const SelectorQuintullizaScreen();
