@@ -1,7 +1,11 @@
+
 import 'package:first_app/sources/modelos/message.dart';
 import 'package:first_app/sources/providers/chat_provider.dart';
+import 'package:first_app/sources/providers/quintilliza_provider.dart';
+import 'package:first_app/sources/screens/settings/quintilliza/quintilliza_model.dart';
 import 'package:first_app/sources/widgets/chat/her_bubble.dart';
 import 'package:first_app/sources/widgets/chat/mine_bubble.dart';
+import 'package:first_app/sources/widgets/shared/menu.dart';
 import 'package:first_app/sources/widgets/shared/message_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,19 +15,20 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final quintiProvider = Provider.of<QuintillizaProvider>(context);
+    QuintillizaModel datosQuintilliza = quintiProvider.quintilliza!;
     return Scaffold(
+      backgroundColor: Colors.red.shade50,
+      drawer: const MenuDrawer(),
       appBar: AppBar(
-        leading: const Padding(
-            padding: EdgeInsets.all(4.0),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://pm1.aminoapps.com/7887/3d22d2c527ba39b4ca4da4012dd1dbf7c3439633r1-735-413v2_uhq.jpg"),
-            )),
-        title: const Text("Itsuki Nakano"),
+
+        title:  Column(children: [Text(datosQuintilliza.nombre),const Text("en linea",style: TextStyle(fontSize: 10),)]),
+        
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: datosQuintilliza.mainColor,
         titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
       ),
+
       body: Container(
         padding:const  EdgeInsetsDirectional.only(end: 5, start:5,top: 10),
         child:  _ChatView(),
@@ -49,7 +54,7 @@ class _ChatView extends StatelessWidget {
               :  MineBubble(message:message);
         })),
         MessageField(
-          onValue:chatProvider.sendMessage,
+          onValue:(value,context)=> chatProvider.sendMessage(value,context)
         )
       ],
     );
