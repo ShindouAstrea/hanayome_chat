@@ -1,13 +1,17 @@
+
 import 'package:first_app/sources/helpers/api_answer.dart';
 import 'package:first_app/sources/modelos/message.dart';
+
 import 'package:flutter/material.dart';
+
 
 class ChatProvider extends ChangeNotifier {
   final ScrollController chatScrollController = ScrollController();
   final getYesOrNo = Answer();
+
   List<Message> messages = [];
 
-  Future<void> sendMessage(String text) async {
+  Future<void> sendMessage(String text,BuildContext context) async {
     if (text.isEmpty) return;
     final String url = text == 'yes'
         ? "https://media.tenor.com/41n0UYCQagIAAAAd/itsuki-quintess.gif"
@@ -16,14 +20,14 @@ class ChatProvider extends ChangeNotifier {
         Message(text: text, fromWho: FromWho.mine, imageUrl: url);
     messages.add(newMessage);
     if (text.endsWith('?')) {
-      herReply();
+      herReply(context);
     }
     notifyListeners();
     moveScrollToBottom();
   }
 
-  Future<void> herReply() async {
-    final herMessage = await getYesOrNo.getAnswer();
+  Future<void> herReply(BuildContext context) async {
+    final herMessage = await getYesOrNo.getAnswer(context);
     messages.add(herMessage);
     notifyListeners();
     moveScrollToBottom();
@@ -35,5 +39,9 @@ class ChatProvider extends ChangeNotifier {
         chatScrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut);
+  }
+  void wipeChat() {
+    messages = [];
+    notifyListeners();
   }
 }
