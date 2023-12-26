@@ -95,7 +95,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             value: quintilliza,
             onChanged: (String? newValue) {
               setState(() {
-                print("Selected Quintilliza: $newValue");
+              
                 quintilliza = newValue;
                 if (quintilliza != null) {
                   cambiarQuintilliza();
