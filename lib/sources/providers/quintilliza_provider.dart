@@ -27,6 +27,12 @@ class QuintillizaProvider extends ChangeNotifier {
   Future<bool> hayDatos() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString('quintillizaId') != null) {
+      //se inicializa el provider para obtener la data
+      String? idQuintilliza = prefs.getString('quintillizaId');
+      int idListQuintilliza = Quintilliza.listaQuintillizas.indexWhere(
+          (quintilliza) => quintilliza.id.toString() == idQuintilliza);
+      quintilliza = Quintilliza.listaQuintillizas[idListQuintilliza];
+      notifyListeners();
       return true;
     } else {
       return false;
