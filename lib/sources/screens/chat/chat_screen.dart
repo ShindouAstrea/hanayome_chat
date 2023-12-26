@@ -16,7 +16,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final quintiProvider = Provider.of<QuintillizaProvider>(context);
-    QuintillizaModel datosQuintilliza = quintiProvider.quintilliza!;
+    QuintillizaModel datosQuintilliza = quintiProvider.quintilliza?? QuintillizaModel(id: 5, nombre: "");
     return Scaffold(
       backgroundColor: Colors.red.shade50,
       drawer: const MenuDrawer(),
