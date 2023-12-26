@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/initial',
   routes: [
     //Widget que separa inicio de sesion
     // GoRoute(path: '/root',builder: (context,state)=>const InitialWidget()),
