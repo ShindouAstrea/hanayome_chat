@@ -1,5 +1,7 @@
 import 'package:first_app/sources/modelos/message.dart';
+import 'package:first_app/sources/providers/quintilliza_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HerBubble extends StatelessWidget {
   final Message message;
@@ -7,11 +9,12 @@ class HerBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
+    final provider = Provider.of<QuintillizaProvider>(context, listen: false);
+    final colors = provider.quintilliza!.mainColor;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20), color: colors.primary),
+              borderRadius: BorderRadius.circular(20), color: colors),
           child:
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -32,27 +35,17 @@ class _Imagebubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
+   
     final size = MediaQuery.of(context).size;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
+      
     
-      child: Image.network(gif,
+      child: Image.asset(gif,
           width: size.width * 0.7,
           height: 150,
-          fit: BoxFit.cover, loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: colors.primary),
-            child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text(
-                  "Gorda está escribiendo ...",
-                  style: TextStyle(color: Colors.white),
-                  
-                )));
-      }),
+          fit: BoxFit.cover
+      ),
     );
   }
 }
