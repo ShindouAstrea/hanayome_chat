@@ -1,6 +1,7 @@
+import 'package:first_app/settings/route/routes.dart';
 import 'package:first_app/settings/theme/app_theme.dart';
 import 'package:first_app/sources/providers/chat_provider.dart';
-import 'package:first_app/sources/screens/chat/chat_screen.dart';
+import 'package:first_app/sources/providers/quintilliza_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,13 +18,18 @@ class MyApp extends StatelessWidget {
           create: (_) {
             return ChatProvider();
           },
-        )
+          
+        ),
+        ChangeNotifierProvider(create: (_){
+          return QuintillizaProvider();
+        })
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
           title: 'Yes or No',
+          routerConfig: appRouter,
           debugShowCheckedModeBanner: false,
           theme: AppTheme().theme(),
-          home: const ChatScreen()),
+      )
     );
   }
 }
