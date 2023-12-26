@@ -1,16 +1,20 @@
-# first_app
+# Hanayome Chat
 
-A new Flutter project.
+Un proyecto realizado con flutter.
 
-## Getting Started
+## Primeros pasos
 
-This project is a starting point for a Flutter application.
+Este proyecto fue realizado con flutter y algunas dependencias
+Para más información sobre como incoporar flutter en tu ecosistema visita la [documentación](https://docs.flutter.dev/).
 
-A few resources to get you started if this is your first Flutter project:
+## Funcionalidades
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Chat con cada quintilliza a eleccion
+2. Cambio de quintilliza elegida
+3. haz preguntas  y te respondera junto con un gif !(respuestas aleatorias y no inteligentes gracias a api [yesno](yesno.wtf))
+4. Persistencia de datos , conserva el chat con tu quintilliza !
+5. Mas funcionalidades pronto !!
+
+
+Desarrollado por Shindou Astrea
